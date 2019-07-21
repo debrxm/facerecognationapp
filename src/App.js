@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import Particles from 'react-particles-js';
+import Particles from 'react-particles-js';
 import {
   Navigation,
   NavigationNotSigned
@@ -12,17 +12,17 @@ import Rank from './components/Rank/Rank';
 import FaceRecognation from './components/FaceRecognation/FaceRecognation';
 import './App.css';
 
-// const particlesOptions = {
-//   particles: {
-//     number: {
-//       value: 30,
-//       density: {
-//         enable: true,
-//         value_area: 800
-//       }
-//     }
-//   }
-// }
+const particlesOptions = {
+  particles: {
+    number: {
+      value: 30,
+      density: {
+        enable: true,
+        value_area: 800
+      }
+    }
+  }
+}
 
 const initialState = {
   input: '',
@@ -67,12 +67,12 @@ class App extends Component {
       }
     });
   };
-  calculateFaceLocation = data => {
-    const Face = data.outputs[0].data.regions[0].region_info.bounding_box;
-    const image = document.getElementById('inputImage');
-    const width = Number(image.width);
-    const height = Number(image.height);
-    return {
+    calculateFaceLocation = data => {
+      const Face = data.outputs[0].data.regions[0].region_info.bounding_box;
+     const image = document.getElementById('inputImage');
+      const width = Number(image.width);
+      const height = Number(image.height);
+      return {
       leftCol: Face.left_col * width,
       topRow: Face.top_row * height,
       rightCol: width - Face.right_col * width,
@@ -132,7 +132,7 @@ class App extends Component {
     const { box, route, imageUrl } = this.state;
     return (
       <div className="App">
-        {/* <Particles className="particles" params={particlesParams} /> */}
+        <Particles className="particles" params={particlesOptions} />
         {route === 'home' ? (
           <Navigation
             changeRoute={this.handleRouteChange}
